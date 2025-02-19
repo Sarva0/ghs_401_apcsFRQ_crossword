@@ -18,22 +18,26 @@ public class Crossword
          
       } // end zero-arg constructor
    
-   public Crossword( boolean[][] blackSquares )
+      public Crossword( boolean[][] blackSquares )
       {
        
-int i = 0;
-     for(int r = 0; r < blackSquares.length; r++){
+          int i = 0;
+          puzzle = new Square[blackSquares.length][blackSquares[0].length];
+        for(int r = 0; r < blackSquares.length; r++){
            for(int c = 0; c < blackSquares[0].length; c++){
+               
                if(toBeLabeled(r,c, blackSquares)){
                      i++;
-                    Square cross = new Square(blackSquares[r][c], i);
+                    
+                    puzzle[r][c] = new Square(blackSquares[r][c], i);
+                    //puzzle[r][c] = cross;
                } else{
-                      Square cross = new Square(blackSquares[r][c], 0) ;
+                    puzzle[r][c] = new Square(blackSquares[r][c], 0) ;
+                    //puzzle[r][c] = cross;
                }
           }
+        }
      }
-     
-}
       // end one-arg constructor 
        
    private boolean toBeLabeled( int r, int c, boolean[][] blackSquares )
@@ -73,4 +77,4 @@ int i = 0;
          } // end outer for
          return output;  
       } // end method toString()
-   } // end class Crossword
+} // end class Crossword
