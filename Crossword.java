@@ -20,27 +20,42 @@ public class Crossword
    
    public Crossword( boolean[][] blackSquares )
       {
-          
-          
-      // to be completed in Part (b)
-      
-      
-      
-      } // end one-arg constructor 
+       
+int i = 0;
+     for(int r = 0; r < blackSquares.length; r++){
+           for(int c = 0; c < blackSquares[0].length; c++){
+               if(toBeLabeled(r,c, blackSquares)){
+                     i++;
+                    Square cross = new Square(blackSquares[r][c], i);
+               } else{
+                      Square cross = new Square(blackSquares[r][c], 0) ;
+               }
+          }
+     }
+     
+}
+      // end one-arg constructor 
        
    private boolean toBeLabeled( int r, int c, boolean[][] blackSquares )
       {
-          
-        
-      
-      return false;    
+       boolean result;
+     if(blackSquares[r][c]){
+          result = false;
+     }else if(r == 0 || c == 0){
+          result = true;
+     } else if(blackSquares[r-1][c] || blackSquares[r][c-1]){
+          result = true;
+     } else{
+          result = false;
+     }
+     return result; 
       } // end method toBeLabeled
       
-   public String toString()
+      public String toString()
       {
-      String output = new String();
+          String output = new String();
       
-      for( int row = 0; row < puzzle.length; row++ )
+          for( int row = 0; row < puzzle.length; row++ )
          {
          for( int col = 0; col < puzzle[0].length; col++ )
             {
@@ -56,7 +71,6 @@ public class Crossword
             } // end inner for
          output += "\n";      
          } // end outer for
-      return output;  
+         return output;  
       } // end method toString()
    } // end class Crossword
-   
